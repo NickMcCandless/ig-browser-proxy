@@ -16,6 +16,7 @@ async function getBrowser() {
   if (!browserPromise) {
     browserPromise = puppeteer.launch({
       headless: true,
+      channel: "chrome",
       args: [
         "--no-sandbox",
         "--disable-setuid-sandbox",
