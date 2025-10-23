@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const LRU = require("lru-cache");
+const { LRUCache } = require("lru-cache");
 const puppeteer = require("puppeteer-extra");
 const StealthPlugin = require("puppeteer-extra-plugin-stealth");
 
@@ -9,7 +9,7 @@ puppeteer.use(StealthPlugin());
 const app = express();
 app.use(cors());
 
-const cache = new LRU({ max: 200, ttl: 1000 * 60 * 5 }); // 5 min cache
+const cache = new LRUCache({ max: 200, ttl: 1000 * 60 * 5 }); // 5 min cache
 let browserPromise;
 
 async function getBrowser() {
